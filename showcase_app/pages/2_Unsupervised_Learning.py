@@ -71,8 +71,7 @@ plt.show()
                 ax = fig1.add_subplot(2, 5, i + 1, xticks=[], yticks=[])
                 ax.imshow(digits.images[i], cmap=plt.cm.binary)
                 ax.set_title(f"Digit: {digits.target[i]}")
-            st.pyplot(fig1)
-            plt.close(fig1)
+            display_and_close_plot(fig1)
 
             # Create and train KMeans model
             model = KMeans(n_clusters=10, random_state=42)
@@ -86,8 +85,7 @@ plt.show()
                 ax = fig2.add_subplot(2, 5, i + 1, xticks=[], yticks=[])
                 ax.imshow(model.cluster_centers_[i].reshape((8, 8)), cmap=plt.cm.binary)
                 ax.set_title(f"Cluster {i}")
-            st.pyplot(fig2)
-            plt.close(fig2)
+            display_and_close_plot(fig2)
 
             show_success("Digit clustering")
 
@@ -117,8 +115,7 @@ plt.show()
             fig_orig = plt.figure(figsize=(3, 3))
             plt.imshow(digits.images[sample_digit], cmap=plt.cm.binary)
             plt.title(f"Digit {digits.target[sample_digit]}")
-            st.pyplot(fig_orig)
-            plt.close(fig_orig)
+            display_and_close_plot(fig_orig)
 
         with col2:
             # Predicted cluster
@@ -129,8 +126,7 @@ plt.show()
                 model.cluster_centers_[prediction].reshape(8, 8), cmap=plt.cm.binary
             )
             plt.title(f"Cluster {prediction}")
-            st.pyplot(fig_pred)
-            plt.close(fig_pred)
+            display_and_close_plot(fig_pred)
 
     render_github_link(
         "projects/unsupervised_learning/handwriting_recognition_kmeans/main.py",

@@ -351,8 +351,7 @@ future_predict = regr.predict(X_future)
                 ax2.set_ylabel("Predicted Production")
                 ax2.set_title("Predicted Honey Production (2013-2050)")
 
-                st.pyplot(fig)
-                plt.close(fig)  # Properly close the figure
+                display_and_close_plot(fig)
         except Exception as e:
             handle_error("Error processing honey production data", e)
 
@@ -406,16 +405,14 @@ model.fit(X_train_scaled, y_train)
                     fig1, ax1 = plt.subplots(figsize=(6, 4))
                     sns.countplot(x="isFraud", data=transactions)
                     plt.title("Fraudulent vs Non-Fraudulent")
-                    st.pyplot(fig1)
-                    plt.close(fig1)
+                    display_and_close_plot(fig1)
 
                 with col2:
                     st.subheader("Transaction Amounts")
                     fig2, ax2 = plt.subplots(figsize=(6, 4))
                     sns.histplot(transactions["amount"], bins=50, kde=True)
                     plt.title("Distribution of Amounts")
-                    st.pyplot(fig2)
-                    plt.close(fig2)
+                    display_and_close_plot(fig2)
 
                 # Model training and evaluation
                 X_train, X_test, y_train, y_test = train_test_split(
@@ -482,8 +479,7 @@ score = model.score(features_test, outcome_test)
                     )
                     plt.xlabel("Break Points Opportunities")
                     plt.ylabel("Winnings")
-                    st.pyplot(fig1)
-                    plt.close(fig1)
+                    display_and_close_plot(fig1)
 
                 # Train and evaluate models
                 models = {
@@ -549,8 +545,7 @@ accuracy = clf.score(test_data, test_labels)
                     df_36[var].mean().sort_values().plot(kind="bar")
                     plt.xticks(rotation=45)
                     plt.title("Average Feature Values")
-                    st.pyplot(fig1)
-                    plt.close(fig1)
+                    display_and_close_plot(fig1)
 
                 # Train model with optimal parameters
                 clf = DecisionTreeClassifier(max_depth=3, ccp_alpha=0.02)
@@ -569,8 +564,7 @@ accuracy = clf.score(test_data, test_labels)
                     feature_names=data.columns,
                     class_names=["Oceania", "Europe"],
                 )
-                st.pyplot(fig2)
-                plt.close(fig2)
+                display_and_close_plot(fig2)
 
                 show_success("Flag classification")
             except Exception as e:
@@ -714,8 +708,7 @@ clf_default.fit(X_train, y_train)
                     coef.plot(kind="bar")
                     plt.xticks(rotation=45)
                     plt.tight_layout()
-                    st.pyplot(fig1)
-                    plt.close(fig1)
+                    display_and_close_plot(fig1)
 
                 # Show model performance
                 st.subheader("Model Performance")
@@ -848,16 +841,14 @@ def analyze_income_data():
 
                 sns.barplot(data=feature_imp, x="Importance", y="Feature")
                 plt.title("Feature Importance in Random Forest Model")
-                st.pyplot(fig)
-                plt.close(fig)
+                display_and_close_plot(fig)
 
                 # Display income distribution
                 st.subheader("Income Distribution")
                 fig2, ax2 = plt.subplots(figsize=(8, 5))
                 sns.countplot(data=df, x="income")
                 plt.title("Distribution of Income Categories")
-                st.pyplot(fig2)
-                plt.close(fig2)
+                display_and_close_plot(fig2)
 
                 show_success("Income analysis")
 
