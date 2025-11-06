@@ -1,5 +1,6 @@
 """Utility functions for the showcase app to reduce code duplication."""
 
+from typing import Optional, Callable, Any, Tuple
 import matplotlib.pyplot as plt
 import streamlit as st
 
@@ -25,7 +26,7 @@ def show_success(message: str) -> None:
     st.success(f"{message} completed successfully!")
 
 
-def render_github_link(github_path: str, dataset_info: str = None) -> None:
+def render_github_link(github_path: str, dataset_info: Optional[Tuple[str, str]] = None) -> None:
     """
     Render a GitHub link with optional dataset information.
     
@@ -56,7 +57,7 @@ def display_and_close_plot(fig) -> None:
     plt.close(fig)
 
 
-def safe_load_data(load_function, error_context: str):
+def safe_load_data(load_function: Callable[[], Any], error_context: str) -> Any:
     """
     Safely execute a data loading function with error handling.
     

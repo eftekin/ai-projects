@@ -8,9 +8,12 @@ from sklearn.cluster import DBSCAN, AgglomerativeClustering, KMeans
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
+# Import utilities from parent directory
 import sys
 from pathlib import Path
-sys.path.append(str(Path(__file__).parent.parent))
+# Add parent directory to path to allow importing utils
+if str(Path(__file__).parent.parent) not in sys.path:
+    sys.path.insert(0, str(Path(__file__).parent.parent))
 from utils import handle_error, show_success, render_github_link, display_and_close_plot
 
 if "digits_model" not in st.session_state:
