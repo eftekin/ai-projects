@@ -1,59 +1,93 @@
-# 🚀 AI EngVentures
+# ai-projects
 
-Welcome to the **AI EngVentures** repository! This repo is a collection of my explorations, projects, and insights in artificial intelligence, computer vision, image processing, and machine learning. Through various projects and topics, I aim to deepen my understanding and share my learnings in these fields.
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=flat&logo=scikit-learn&logoColor=white)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=flat&logo=tensorflow&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat&logo=jupyter&logoColor=white)
 
-## 🗂️ Contents
+A comprehensive collection of artificial intelligence and machine learning projects covering core concepts, algorithms, and real-world applications.
 
-### 1. 🤖 [Machine Learning](./machine_learning)
+## Overview
 
-Dive into feature engineering, supervised learning, and upcoming unsupervised learning models:
+This repository documents my journey in AI and machine learning, featuring hands-on implementations of fundamental algorithms, practical projects, and explorations in computer vision and image processing.
 
-- **Feature Engineering**: Techniques for transforming and scaling data.
-- **Supervised Learning**: Projects covering linear regression, logistic regression, and k-nearest neighbors algorithms.
-- **Unsupervised Learning** Projects featuring K-Means clustering, PCA (Principal Component Analysis), and more.
+## Structure
 
-### 2. 🛠️ [Projects](./projects)
+### Machine Learning
 
-Real-world applications of AI and machine learning techniques:
+**Feature Engineering**
+- Data transformation and scaling techniques
+- Categorical encoding and date-time features
+- Feature selection with wrapper methods
 
-- **🩺 [Cancer Classifier](./projects/supervised_learning/cancer_classifier)**: A model to predict cancer based on diagnostic data.
-- **🍯 [Honey Production](./projects/supervised_learning/honey_production)**: Predicting honey production using regression techniques.
-- **💳 [Credit Card Fraud Detection](./projects/supervised_learning/predict_credit_card_fraud)**: Identifying fraudulent transactions with logistic regression.
-- **🎾 [Tennis Ace](./projects/supervised_learning/tennis_ace)**: A project exploring data analysis in sports.
-- **🚩 [Find the Flag!](./projects/supervised_learning/find_the_flag)**: Predict the continent of a flag using decision trees and features like colors and shapes. [Dataset](https://archive.ics.uci.edu/ml/datasets/Flags)
-- **🧰 [Transforming Data into Features](./projects/feature_engineering/transforming_data)**: Transform customer review data by scaling, encoding categorical variables, and handling date-time features. [Dataset from Kaggle](https://www.kaggle.com/datasets/nicapotato/womens-ecommerce-clothing-reviews).
-- **📝 [Wrapper Methods](./projects/feature_engineering/wrapper_methods)**: Use logistic regression to predict obesity and explore feature selection with wrapper methods. Dataset: [Obesity Data Set](https://archive.ics.uci.edu/dataset/544/estimation+of+obesity+levels+based+on+eating+habits+and+physical+condition).
-- **✍️ [Handwriting Recognition](./projects/unsupervised_learning/handwriting_recognition_kmeans)**: Use K-means clustering to recognize and group images of handwritten digits, leveraging scikit-learn for clustering analysis. [Dataset from scikit-learn](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html).
-- **📧 [Email Similarity Classification](./projects/supervised_learning/email_similarity)**: A project that classifies emails into categories (hardware or hockey) using the Naive Bayes algorithm. This project utilizes the `fetch_20newsgroups` dataset and includes functionalities for predicting email categories based on user input.
-- **🍷 [Predict Wine Quality with Regularization](./projects/supervised_learning/predict_wine_quality)**: Classify wine quality (good/bad) with logistic regression, ridge, and lasso regularization. [Wine Quality Dataset](https://archive.ics.uci.edu/ml/datasets/Wine+Quality)
-- **🌲 [Random Forests Project](./projects/supervised_learning/random_forests)**: Predict income >$50K from census data. [Dataset](https://archive.ics.uci.edu/ml/datasets/census+income)
-- **🔧 [Building ML Pipelines](./projects/machine_learning/ml_pipelines)**: Pipeline for pediatric bone marrow transplants, including preprocessing and classifier selection to predict survival.
+**Supervised Learning**
+- Linear and logistic regression
+- K-nearest neighbors
+- Decision trees and random forests
+- Regularization techniques (Ridge, Lasso)
+- Naive Bayes classification
 
-### 3. 🖼️ [Computer Vision and Image Processing](./computer_vision_and_image_processing)
+**Unsupervised Learning**
+- K-Means clustering
+- Principal Component Analysis (PCA)
+- Dimensionality reduction
 
-Explore core concepts of image processing and computer vision, covering topics such as:
+### Projects
 
-- **Image Processing Fundamentals** (Filtering, edge detection)
-- **Geometric Transformations**
-- **Pixel Transformations**
-- **Object Detection**
-- **Logistic Regression for Vision Tasks**
-- **Neural Networks for Vision Applications**
+**Classification & Prediction**
+- Cancer Classifier - Diagnostic prediction model
+- Credit Card Fraud Detection - Transaction fraud identification
+- Wine Quality Prediction - Classification with regularization
+- Email Similarity - Naive Bayes email categorization
+- Find the Flag - Continent prediction using decision trees
+- Random Forests - Income prediction from census data
+- Handwriting Recognition - Digit clustering with K-means
 
-### 4. 📐 [Math for AI Engineering](./math_for_ai_engineering)
+**Regression & Forecasting**
+- Honey Production - Production forecasting
+- Tennis Ace - Sports data analysis
 
-Understand the mathematical foundations required for AI, including:
+**Feature Engineering Applications**
+- Data Transformation - E-commerce review analysis
+- Wrapper Methods - Obesity prediction with feature selection
 
-- **Linear Algebra**
-- **Probability**
-- **Statistics**
+**ML Engineering**
+- Building ML Pipelines - End-to-end medical data pipeline
 
-## 🤝 How to Contribute
+### Computer Vision & Image Processing
 
-If you'd like to contribute:
+- Image processing fundamentals
+- Geometric and pixel transformations
+- Edge detection and filtering
+- Object detection
+- Neural networks for vision tasks
 
-1. Fork this repository.
-2. Create a new branch.
-3. Make your changes and submit a pull request.
+### Mathematical Foundations
 
-I'm open to contributions and feedback, so feel free to reach out with any ideas!
+- Linear algebra
+- Probability and statistics
+
+## Getting Started
+```bash
+# Clone the repository
+git clone https://github.com/eftekin/ai-projects.git
+cd ai-projects
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+## Technologies
+
+- **Core:** Python, Jupyter Notebook
+- **ML Libraries:** scikit-learn, NumPy, Pandas
+- **Deep Learning:** TensorFlow
+- **Visualization:** Matplotlib, Seaborn
+
+## Contributing
+
+Contributions are welcome. Fork the repository, create a feature branch, and submit a pull request.
+
+## License
+
+MIT License
