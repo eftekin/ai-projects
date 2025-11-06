@@ -15,6 +15,11 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier
 
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+from utils import handle_error, show_success, render_github_link, display_and_close_plot
+
 st.title("Supervised Learning Projects")
 tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs(
     [
@@ -35,7 +40,7 @@ def create_honey_plots():
         fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5))
         return fig, (ax1, ax2)
     except Exception as e:
-        st.error(f"Error creating plots: {str(e)}")
+        handle_error("Error creating plots", e)
         return None, None
 
 
@@ -64,7 +69,7 @@ def analyze_fraud_detection():
 
         return transactions, features, label
     except Exception as e:
-        st.error(f"Error loading fraud detection data: {str(e)}")
+        handle_error("Error loading fraud detection data", e)
         return None, None, None
 
 
@@ -102,7 +107,7 @@ def analyze_tennis_data():
 
         return df, single_feature, two_features, multiple_features, outcome
     except Exception as e:
-        st.error(f"Error loading tennis data: {str(e)}")
+        handle_error("Error loading tennis data", e)
         return None, None, None, None, None
 
 
@@ -185,7 +190,7 @@ def analyze_flag_data():
 
         return df_36, data, labels, var
     except Exception as e:
-        st.error(f"Error loading flag data: {str(e)}")
+        handle_error("Error loading flag data", e)
         return None, None, None, None
 
 
@@ -215,7 +220,7 @@ def analyze_email_data():
 
         return train_emails, test_emails, counter, train_counts, test_counts
     except Exception as e:
-        st.error(f"Error loading email data: {str(e)}")
+        handle_error("Error loading email data", e)
         return None, None, None, None, None
 
 
@@ -234,7 +239,7 @@ def analyze_wine_data():
 
         return df, X, y, features.columns
     except Exception as e:
-        st.error(f"Error loading wine data: {str(e)}")
+        handle_error("Error loading wine data", e)
         return None, None, None, None
 
 
@@ -270,10 +275,9 @@ print(f"Accuracy: {accuracy:.4f}")
         st.write(f"Accuracy: {accuracy:.4f}")
 
     # Add GitHub link at the bottom of tab1
-    st.markdown("---")
-    st.markdown(
-        '<a href="https://github.com/eftekin/AI-EngVentures/blob/main/projects/supervised_learning/cancer_classifier/main.py" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="25" style="vertical-align: middle;"/></a> | <a href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_breast_cancer.html">Dataset: Breast Cancer Wisconsin</a>',
-        unsafe_allow_html=True,
+    render_github_link(
+        "projects/supervised_learning/cancer_classifier/main.py",
+        ("Dataset: Breast Cancer Wisconsin", "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_breast_cancer.html")
     )
 
 with tab2:
@@ -350,13 +354,12 @@ future_predict = regr.predict(X_future)
                 st.pyplot(fig)
                 plt.close(fig)  # Properly close the figure
         except Exception as e:
-            st.error(f"Error processing honey production data: {str(e)}")
+            handle_error("Error processing honey production data", e)
 
     # Update GitHub link with correct username
-    st.markdown("---")
-    st.markdown(
-        '<a href="https://github.com/eftekin/AI-EngVentures/blob/main/projects/supervised_learning/honey_production/main.py" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="25" style="vertical-align: middle;"/></a> | <a href="https://content.codecademy.com/programs/data-science-path/linear_regression/honeyproduction.csv">Dataset: Honey Production</a>',
-        unsafe_allow_html=True,
+    render_github_link(
+        "projects/supervised_learning/honey_production/main.py",
+        ("Dataset: Honey Production", "https://content.codecademy.com/programs/data-science-path/linear_regression/honeyproduction.csv")
     )
 
 with tab3:
@@ -429,14 +432,13 @@ model.fit(X_train_scaled, y_train)
                 st.write(f"Training Score: {model.score(X_train_scaled, y_train):.4f}")
                 st.write(f"Test Score: {model.score(X_test_scaled, y_test):.4f}")
 
-                st.success("Fraud detection analysis completed successfully!")
+                show_success("Fraud detection analysis")
             except Exception as e:
-                st.error(f"Error during fraud detection analysis: {str(e)}")
+                handle_error("Error during fraud detection analysis", e)
 
-    st.markdown("---")
-    st.markdown(
-        '<a href="https://github.com/eftekin/AI-EngVentures/blob/main/projects/supervised_learning/predict_credit_card_fraud/main.py" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="25" style="vertical-align: middle;"/></a> | <a href="https://github.com/eftekin/AI-EngVentures/blob/main/assets/csv/transactions_modified.csv">Dataset: Financial Fraud</a>',
-        unsafe_allow_html=True,
+    render_github_link(
+        "projects/supervised_learning/predict_credit_card_fraud/main.py",
+        ("Dataset: Financial Fraud", "https://github.com/eftekin/AI-EngVentures/blob/main/assets/csv/transactions_modified.csv")
     )
 
 with tab4:
@@ -500,14 +502,13 @@ score = model.score(features_test, outcome_test)
                     score = model.score(X_test, y_test)
                     st.write(f"{model_name} ({desc}) - R² Score: {score:.4f}")
 
-                st.success("Tennis analysis completed successfully!")
+                show_success("Tennis analysis")
             except Exception as e:
-                st.error(f"Error during tennis analysis: {str(e)}")
+                handle_error("Error during tennis analysis", e)
 
-    st.markdown("---")
-    st.markdown(
-        '<a href="https://github.com/eftekin/AI-EngVentures/blob/main/projects/supervised_learning/tennis_ace/main.py" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="25" style="vertical-align: middle;"/></a> | <a href="https://github.com/eftekin/AI-EngVentures/blob/main/assets/csv/tennis_stats.csv">Dataset: Tennis Statistics</a>',
-        unsafe_allow_html=True,
+    render_github_link(
+        "projects/supervised_learning/tennis_ace/main.py",
+        ("Dataset: Tennis Statistics", "https://github.com/eftekin/AI-EngVentures/blob/main/assets/csv/tennis_stats.csv")
     )
 
 with tab5:
@@ -571,14 +572,13 @@ accuracy = clf.score(test_data, test_labels)
                 st.pyplot(fig2)
                 plt.close(fig2)
 
-                st.success("Flag classification completed successfully!")
+                show_success("Flag classification")
             except Exception as e:
-                st.error(f"Error during flag classification: {str(e)}")
+                handle_error("Error during flag classification", e)
 
-    st.markdown("---")
-    st.markdown(
-        '<a href="https://github.com/eftekin/AI-EngVentures/blob/main/projects/supervised_learning/find_the_flag/main.py" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="25" style="vertical-align: middle;"/></a> | <a href="https://archive.ics.uci.edu/ml/machine-learning-databases/flags/flag.data">Dataset: Flag Database</a>',
-        unsafe_allow_html=True,
+    render_github_link(
+        "projects/supervised_learning/find_the_flag/main.py",
+        ("Dataset: Flag Database", "https://archive.ics.uci.edu/ml/machine-learning-databases/flags/flag.data")
     )
 
 with tab6:
@@ -631,9 +631,9 @@ print(f"Model Accuracy: {accuracy:.4f}")
                 st.subheader("Model Performance")
                 accuracy = classifier.score(test_counts, test_emails.target)
                 st.write(f"Test Accuracy: {accuracy:.4f}")
-                st.success("Email analysis completed successfully!")
+                show_success("Email analysis")
             except Exception as e:
-                st.error(f"Error during email analysis: {str(e)}")
+                handle_error("Error during email analysis", e)
 
     # Email classification section
     st.subheader("Try it yourself!")
@@ -655,12 +655,11 @@ print(f"Model Accuracy: {accuracy:.4f}")
                 category = st.session_state["email_categories"][prediction[0]]
                 st.success(f"The email is classified as: {category}")
             except Exception as e:
-                st.error(f"Error classifying text: {str(e)}")
+                handle_error("Error classifying text", e)
 
-    st.markdown("---")
-    st.markdown(
-        '<a href="https://github.com/eftekin/AI-EngVentures/blob/main/projects/supervised_learning/email_similarity/main.py" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="25" style="vertical-align: middle;"/></a> | <a href="https://scikit-learn.org/stable/datasets/real_world.html#newsgroups-dataset">Dataset: 20 Newsgroups</a>',
-        unsafe_allow_html=True,
+    render_github_link(
+        "projects/supervised_learning/email_similarity/main.py",
+        ("Dataset: 20 Newsgroups", "https://scikit-learn.org/stable/datasets/real_world.html#newsgroups-dataset")
     )
 
 with tab7:
@@ -737,14 +736,13 @@ clf_default.fit(X_train, y_train)
                 )
                 st.write(f"Testing F1 Score: {f1_score(y_test, y_pred_test_ridge):.4f}")
 
-                st.success("Wine quality analysis completed successfully!")
+                show_success("Wine quality analysis")
             except Exception as e:
-                st.error(f"Error during wine analysis: {str(e)}")
+                handle_error("Error during wine analysis", e)
 
-    st.markdown("---")
-    st.markdown(
-        '<a href="https://github.com/eftekin/AI-EngVentures/blob/main/projects/supervised_learning/predict_wine_quality/main.py" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="25" style="vertical-align: middle;"/></a> | <a href="https://github.com/eftekin/AI-EngVentures/blob/main/assets/csv/wine_quality.csv">Dataset: Wine Quality</a>',
-        unsafe_allow_html=True,
+    render_github_link(
+        "projects/supervised_learning/predict_wine_quality/main.py",
+        ("Dataset: Wine Quality", "https://github.com/eftekin/AI-EngVentures/blob/main/assets/csv/wine_quality.csv")
     )
 
 with tab8:
@@ -777,48 +775,48 @@ accuracy = rf.score(x_test, y_test)
 
     st.code(code, language="python")
 
-    def analyze_income_data():
-        try:
-            # Load and prepare data
-            col_names = [
-                "age",
-                "workclass",
-                "fnlwgt",
-                "education",
-                "education-num",
-                "marital-status",
-                "occupation",
-                "relationship",
-                "race",
-                "sex",
-                "capital-gain",
-                "capital-loss",
-                "hours-per-week",
-                "native-country",
-                "income",
-            ]
-            df = pd.read_csv("assets/csv/adult.data", header=None, names=col_names)
+def analyze_income_data():
+    try:
+        # Load and prepare data
+        col_names = [
+            "age",
+            "workclass",
+            "fnlwgt",
+            "education",
+            "education-num",
+            "marital-status",
+            "occupation",
+            "relationship",
+            "race",
+            "sex",
+            "capital-gain",
+            "capital-loss",
+            "hours-per-week",
+            "native-country",
+            "income",
+        ]
+        df = pd.read_csv("assets/csv/adult.data", header=None, names=col_names)
 
-            # Clean whitespace
-            for col in df.select_dtypes(include=["object"]).columns:
-                df[col] = df[col].str.strip()
+        # Clean whitespace
+        for col in df.select_dtypes(include=["object"]).columns:
+            df[col] = df[col].str.strip()
 
-            # Create features
-            feature_cols = [
-                "age",
-                "capital-gain",
-                "capital-loss",
-                "hours-per-week",
-                "sex",
-                "race",
-            ]
-            X = pd.get_dummies(df[feature_cols], drop_first=True)
-            y = np.where(df.income == "<=50K", 0, 1)
+        # Create features
+        feature_cols = [
+            "age",
+            "capital-gain",
+            "capital-loss",
+            "hours-per-week",
+            "sex",
+            "race",
+        ]
+        X = pd.get_dummies(df[feature_cols], drop_first=True)
+        y = np.where(df.income == "<=50K", 0, 1)
 
-            return df, X, y, feature_cols
-        except Exception as e:
-            st.error(f"Error loading income data: {str(e)}")
-            return None, None, None, None
+        return df, X, y, feature_cols
+    except Exception as e:
+        handle_error("Error loading income data", e)
+        return None, None, None, None
 
     if st.button("Run Income Analysis"):
         df, X, y, feature_cols = analyze_income_data()
@@ -861,13 +859,12 @@ accuracy = rf.score(x_test, y_test)
                 st.pyplot(fig2)
                 plt.close(fig2)
 
-                st.success("Income analysis completed successfully!")
+                show_success("Income analysis")
 
             except Exception as e:
-                st.error(f"Error during income analysis: {str(e)}")
+                handle_error("Error during income analysis", e)
 
-    st.markdown("---")
-    st.markdown(
-        '<a href="https://github.com/eftekin/AI-EngVentures/blob/main/projects/supervised_learning/random_forests/main.py" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="25" style="vertical-align: middle;"/></a> | <a href="https://github.com/eftekin/AI-EngVentures/blob/main/assets/csv/adult.data">Dataset: Adult Income</a>',
-        unsafe_allow_html=True,
+    render_github_link(
+        "projects/supervised_learning/random_forests/main.py",
+        ("Dataset: Adult Income", "https://github.com/eftekin/AI-EngVentures/blob/main/assets/csv/adult.data")
     )

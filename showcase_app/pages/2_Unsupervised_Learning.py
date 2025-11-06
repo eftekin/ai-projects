@@ -8,6 +8,11 @@ from sklearn.cluster import DBSCAN, AgglomerativeClustering, KMeans
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
+import sys
+from pathlib import Path
+sys.path.append(str(Path(__file__).parent.parent))
+from utils import handle_error, show_success, render_github_link, display_and_close_plot
+
 if "digits_model" not in st.session_state:
     st.session_state.digits_model = None
     st.session_state.digits_data = None
@@ -84,10 +89,10 @@ plt.show()
             st.pyplot(fig2)
             plt.close(fig2)
 
-            st.success("Digit clustering completed successfully!")
+            show_success("Digit clustering")
 
         except Exception as e:
-            st.error(f"Error during digit clustering: {str(e)}")
+            handle_error("Error during digit clustering", e)
 
     # Only show prediction section if model exists
     if (
@@ -127,10 +132,9 @@ plt.show()
             st.pyplot(fig_pred)
             plt.close(fig_pred)
 
-    st.markdown("---")
-    st.markdown(
-        '<a href="https://github.com/eftekin/AI-EngVentures/blob/main/projects/unsupervised_learning/handwriting_recognition_kmeans/main.py" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="25" style="vertical-align: middle;"/></a> | <a href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html">Dataset: Digits Dataset</a>',
-        unsafe_allow_html=True,
+    render_github_link(
+        "projects/unsupervised_learning/handwriting_recognition_kmeans/main.py",
+        ("Dataset: Digits Dataset", "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html")
     )
 
 with tab2:
@@ -191,10 +195,8 @@ with tab2:
         )
         st.plotly_chart(fig)
 
-    st.markdown("---")
-    st.markdown(
-        '<a href="https://github.com/eftekin/AI-EngVentures/blob/main/projects/unsupervised_learning/customer_segmentation/main.py" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="25" style="vertical-align: middle;"/></a>',
-        unsafe_allow_html=True,
+    render_github_link(
+        "projects/unsupervised_learning/customer_segmentation/main.py"
     )
 
 with tab3:
@@ -263,8 +265,6 @@ with tab3:
         if hasattr(model, "inertia_"):
             st.info(f"Inertia: {model.inertia_:.2f}")
 
-    st.markdown("---")
-    st.markdown(
-        '<a href="https://github.com/eftekin/AI-EngVentures/blob/main/projects/unsupervised_learning/interactive_clustering/main.py" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="25" style="vertical-align: middle;"/></a>',
-        unsafe_allow_html=True,
+    render_github_link(
+        "projects/unsupervised_learning/interactive_clustering/main.py"
     )
