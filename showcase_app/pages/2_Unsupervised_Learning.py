@@ -8,6 +8,14 @@ from sklearn.cluster import DBSCAN, AgglomerativeClustering, KMeans
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
+# Import utilities from parent directory
+import sys
+from pathlib import Path
+# Add parent directory to path to allow importing utils
+if str(Path(__file__).parent.parent) not in sys.path:
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+from utils import handle_error, show_success, render_github_link, display_and_close_plot
+
 if "digits_model" not in st.session_state:
     st.session_state.digits_model = None
     st.session_state.digits_data = None
@@ -66,8 +74,7 @@ plt.show()
                 ax = fig1.add_subplot(2, 5, i + 1, xticks=[], yticks=[])
                 ax.imshow(digits.images[i], cmap=plt.cm.binary)
                 ax.set_title(f"Digit: {digits.target[i]}")
-            st.pyplot(fig1)
-            plt.close(fig1)
+            display_and_close_plot(fig1)
 
             # Create and train KMeans model
             model = KMeans(n_clusters=10, random_state=42)
@@ -81,13 +88,12 @@ plt.show()
                 ax = fig2.add_subplot(2, 5, i + 1, xticks=[], yticks=[])
                 ax.imshow(model.cluster_centers_[i].reshape((8, 8)), cmap=plt.cm.binary)
                 ax.set_title(f"Cluster {i}")
-            st.pyplot(fig2)
-            plt.close(fig2)
+            display_and_close_plot(fig2)
 
-            st.success("Digit clustering completed successfully!")
+            show_success("Digit clustering")
 
         except Exception as e:
-            st.error(f"Error during digit clustering: {str(e)}")
+            handle_error("Error during digit clustering", e)
 
     # Only show prediction section if model exists
     if (
@@ -112,8 +118,7 @@ plt.show()
             fig_orig = plt.figure(figsize=(3, 3))
             plt.imshow(digits.images[sample_digit], cmap=plt.cm.binary)
             plt.title(f"Digit {digits.target[sample_digit]}")
-            st.pyplot(fig_orig)
-            plt.close(fig_orig)
+            display_and_close_plot(fig_orig)
 
         with col2:
             # Predicted cluster
@@ -124,13 +129,11 @@ plt.show()
                 model.cluster_centers_[prediction].reshape(8, 8), cmap=plt.cm.binary
             )
             plt.title(f"Cluster {prediction}")
-            st.pyplot(fig_pred)
-            plt.close(fig_pred)
+            display_and_close_plot(fig_pred)
 
-    st.markdown("---")
-    st.markdown(
-        '<a href="https://github.com/eftekin/AI-EngVentures/blob/main/projects/unsupervised_learning/handwriting_recognition_kmeans/main.py" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="25" style="vertical-align: middle;"/></a> | <a href="https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html">Dataset: Digits Dataset</a>',
-        unsafe_allow_html=True,
+    render_github_link(
+        "projects/unsupervised_learning/handwriting_recognition_kmeans/main.py",
+        ("Dataset: Digits Dataset", "https://scikit-learn.org/stable/modules/generated/sklearn.datasets.load_digits.html")
     )
 
 with tab2:
@@ -191,10 +194,8 @@ with tab2:
         )
         st.plotly_chart(fig)
 
-    st.markdown("---")
-    st.markdown(
-        '<a href="https://github.com/eftekin/AI-EngVentures/blob/main/projects/unsupervised_learning/customer_segmentation/main.py" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="25" style="vertical-align: middle;"/></a>',
-        unsafe_allow_html=True,
+    render_github_link(
+        "projects/unsupervised_learning/customer_segmentation/main.py"
     )
 
 with tab3:
@@ -263,8 +264,6 @@ with tab3:
         if hasattr(model, "inertia_"):
             st.info(f"Inertia: {model.inertia_:.2f}")
 
-    st.markdown("---")
-    st.markdown(
-        '<a href="https://github.com/eftekin/AI-EngVentures/blob/main/projects/unsupervised_learning/interactive_clustering/main.py" target="_blank"><img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" width="25" style="vertical-align: middle;"/></a>',
-        unsafe_allow_html=True,
+    render_github_link(
+        "projects/unsupervised_learning/interactive_clustering/main.py"
     )
